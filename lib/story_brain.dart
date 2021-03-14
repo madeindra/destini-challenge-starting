@@ -1,7 +1,7 @@
 import './story.dart';
 
 class StoryBrain {
-  int storyNumber = 0;
+  int _storyNumber = 0;
   List<Story> _storyData = [
     Story(
         storyTitle:
@@ -34,28 +34,28 @@ class StoryBrain {
         choice2: '')
   ];
 
-  String get getStory => _storyData[storyNumber].storyTitle;
-  String get getChoice1 => _storyData[storyNumber].choice1;
-  String get getChoice2 => _storyData[storyNumber].choice2;
+  String get getStory => _storyData[_storyNumber].storyTitle;
+  String get getChoice1 => _storyData[_storyNumber].choice1;
+  String get getChoice2 => _storyData[_storyNumber].choice2;
 
   void nextStory(int choiceNumber) {
     switch (choiceNumber) {
       case 1:
-        if (storyNumber == 0 || storyNumber == 1) {
-          storyNumber = 2;
-        } else if (storyNumber == 2) {
-          storyNumber = 5;
+        if (_storyNumber == 0 || _storyNumber == 1) {
+          _storyNumber = 2;
+        } else if (_storyNumber == 2) {
+          _storyNumber = 5;
         } else {
           restart();
         }
         break;
       case 2:
-        if (storyNumber == 0) {
-          storyNumber = 1;
-        } else if (storyNumber == 1) {
-          storyNumber = 3;
-        } else if (storyNumber == 2) {
-          storyNumber = 4;
+        if (_storyNumber == 0) {
+          _storyNumber = 1;
+        } else if (_storyNumber == 1) {
+          _storyNumber = 3;
+        } else if (_storyNumber == 2) {
+          _storyNumber = 4;
         } else {
           restart();
         }
@@ -64,10 +64,8 @@ class StoryBrain {
   }
 
   void restart() {
-    storyNumber = 0;
+    _storyNumber = 0;
   }
 }
-
-//TODO: Step 25 - Change the storyNumber property into a private property so that only story_brain.dart has access to it. You can do this by right clicking on the name (storyNumber) and selecting Refactor -> Rename to make the change across all the places where it's used.
 
 //TODO: Step 27 - Create a method called buttonShouldBeVisible() which checks to see if storyNumber is 0 or 1 or 2 (when both buttons should show choices) and return true if that is the case, else it should return false.
